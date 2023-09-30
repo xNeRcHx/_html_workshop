@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <a href="https://e.tsi.lv/user/profile.php?id=11578" >GET</a>
+        <button onclick="addStudent()">POST</button>
+        <!--
+        <form>
+            <label for="fname">First name:</label><br>
+            <input type="text" id="fname"><br><br>
+            <label for="fname">Second name:</label><br>
+            <input type="text" id="fsurname"><br><br>
+            <label for="fname">ID:</label><br>
+            <input type="text" id="fid"><br><br>
+            <label for="fname">Age:</label><br>
+            <input type="text" id="fid"><br><br>
+            <label for="fname">Faculty:</label><br>
+            <input type="text" id="fid"><br><br>
+            <input type="submit" formaction="https://e.tsi.lv/user/profile.php" value="Submit">
+        </form>
+        -->
+        <br>
+        <iframe width="480" height="270" src="https://www.youtube.com/embed/y881t8ilMyc"> </iframe><br>
+        <button onclick="getLocation()">Show location</button>
+        <p id="locaction"></p>
+        <br>
+        <img ondrop="drop(event)" src="https://img.freepik.com/free-vector/hand-drawn-halloween-illustration_23-2149643578.jpg" ondragover="allowDrop(event)"width="500" height="500"></img>
+        <br>
+        <img id="drag1" src="https://img.freepik.com/free-vector/crazy-universe-abstract-illustration_52683-87571.jpg?w=360" draggable="true" ondragstart="drag(event)" width="240" height="320">
+    </body>
+    <script>
+        function addStudent() {
+            const url = `https://e.tsi.lv/user/profile.php`;
+            let obj = {
+                name: "Arians",
+                surname: 'Gurins',
+                age: 21,
+                id: 11578,
+                faculty: "IZF"
+            }
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    //'Authorization': `Bearer ${client.user.identity.getAuthorizationToken().value}`
+                },
+                body: JSON.stringify(obj)
+
+            })
+            .then(response => response.text())
+            .then((text) => {
+                console.log(text);
+            })
+            .catch(err => console.error(err));
+        }
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.id);
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            var data = event.dataTransfer.getData("text");
+            event.target.appendChild(document.getElementById(data));
+        }
+        var x = document.getElementById("locaction");
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            x.innerHTML = "Latitude: " + position.coords.latitude +
+            "<br>Longitude: " + position.coords.longitude;
+        }
+    </script>
+</html>

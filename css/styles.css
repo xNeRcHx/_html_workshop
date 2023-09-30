@@ -1,0 +1,21 @@
+body {
+    background-color: #120B07;
+}
+.bigger_paragraph {
+    font-size: 30px;
+}
+.centered {
+    text-align: center;
+}
+h1 {
+    color: #f9ce4a;
+    font-family: 'Arial', sans-serif;
+}
+h2 {
+    color: #f9ce4a;
+    font-family: 'Arial', sans-serif;
+}
+p, li {
+    font-family: 'Arial', sans-serif;
+    color: white;
+}
